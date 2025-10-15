@@ -3,8 +3,8 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
-import categoryRoutes from './routes/categoryRoutes';
-import productRoutes from './routes/productRoutes';
+import categoryRoutes from './routes/categories.route';
+import productRoutes from './routes/products.route';
 dotenv.config({ path: './.env', });
 
 export const envMode = process.env.NODE_ENV?.trim() || 'DEVELOPMENT';

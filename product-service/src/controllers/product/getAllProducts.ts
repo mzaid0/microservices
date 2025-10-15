@@ -33,25 +33,26 @@ interface GetAllProductsResponse {
     }
 }
 
+interface WhereClause {
+    categoryId?: string
+    OR?: Array<{
+        name?: { contains: string; mode: 'insensitive' }
+        description?: { contains: string; mode: 'insensitive' }
+    }>
+}
+
 export const getAllProducts = async (req: Request, res: Response): Promise<void> => {
     try {
         const { page = "1", limit = "10", categoryId, search } = req.query as GetAllProductsQuery
 
         const pageNumber = parseInt(page)
+
         const limitNumber = parseInt(limit)
+        
         const skip = (pageNumber - 1) * limitNumber
 
-        // Build where clause
-        interface WhereClause {
-            categoryId?: string
-            OR?: Array<{
-                name?: { contains: string; mode: 'insensitive' }
-                description?: { contains: string; mode: 'insensitive' }
-            }>
-        }
-
         const where: WhereClause = {}
-        
+
         if (categoryId) {
             where.categoryId = categoryId
         }
@@ -63,10 +64,8 @@ export const getAllProducts = async (req: Request, res: Response): Promise<void>
             ]
         }
 
-        // Get total count for pagination
         const totalProducts = await productDb.product.count({ where })
 
-        // Get products
         const products = await productDb.product.findMany({
             where,
             include: {
@@ -103,9 +102,9 @@ export const getAllProducts = async (req: Request, res: Response): Promise<void>
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to retrieve products" 
+            message: "Failed to retrieve products"
         })
     }
 }

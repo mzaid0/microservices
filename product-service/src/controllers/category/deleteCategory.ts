@@ -22,7 +22,6 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
             return
         }
 
-        // Check if category exists
         const existingCategory = await productDb.category.findUnique({
             where: { id },
             include: {
@@ -42,7 +41,6 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
             return
         }
 
-        // Check if category has products
         if (existingCategory._count.products > 0) {
             res.status(400).json({
                 success: false,
@@ -51,7 +49,6 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
             return
         }
 
-        // Delete the category
         await productDb.category.delete({
             where: { id }
         })

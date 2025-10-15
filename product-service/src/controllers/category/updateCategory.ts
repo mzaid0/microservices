@@ -37,7 +37,6 @@ export const updateCategory = async (req: Request, res: Response): Promise<void>
             return
         }
 
-        // Check if category exists
         const existingCategory = await productDb.category.findUnique({
             where: { id }
         })
@@ -50,7 +49,6 @@ export const updateCategory = async (req: Request, res: Response): Promise<void>
             return
         }
 
-        // Check if another category with the same name exists
         const duplicateCategory = await productDb.category.findFirst({
             where: {
                 name: {
