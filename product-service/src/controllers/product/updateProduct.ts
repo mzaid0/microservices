@@ -1,31 +1,11 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
-
-interface UpdateProductBody {
-    name?: string
-    description?: string
-    price?: number
-    categoryId?: string
-}
-
-interface UpdateProductResponse {
-    success: boolean
-    message: string
-    product?: {
-        id: string
-        name: string
-        description: string | null
-        price: number
-        categoryId: string | null
-        createdAt: Date
-        updatedAt: Date
-    }
-}
+import { Validator } from "../../validator"
 
 export const updateProduct = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
-        const { name, description, price, categoryId } = req.body as UpdateProductBody
+        const { name, description, price, categoryId } = req.body as Validator["product"]
 
         if (!id) {
             res.status(400).json({
@@ -71,5 +51,19 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
             success: false,
             message: "Failed to update product"
         })
+    }
+}
+
+interface UpdateProductResponse {
+    success: boolean
+    message: string
+    product?: {
+        id: string
+        name: string
+        description: string | null
+        price: number
+        categoryId: string | null
+        createdAt: Date
+        updatedAt: Date
     }
 }

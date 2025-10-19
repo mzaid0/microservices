@@ -1,25 +1,6 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
 
-interface GetCategoryResponse {
-    success: boolean
-    message: string
-    category?: {
-        id: string
-        name: string
-        createdAt: Date
-        updatedAt: Date
-        products: {
-            id: string
-            name: string
-            price: number
-        }[]
-        _count: {
-            products: number
-        }
-    }
-}
-
 export const getCategory = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
@@ -71,9 +52,28 @@ export const getCategory = async (req: Request, res: Response): Promise<void> =>
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to retrieve category" 
+            message: "Failed to retrieve category"
         })
+    }
+}
+
+interface GetCategoryResponse {
+    success: boolean
+    message: string
+    category?: {
+        id: string
+        name: string
+        createdAt: Date
+        updatedAt: Date
+        products: {
+            id: string
+            name: string
+            price: number
+        }[]
+        _count: {
+            products: number
+        }
     }
 }

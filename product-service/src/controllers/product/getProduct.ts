@@ -1,24 +1,5 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
-
-interface GetProductResponse {
-    success: boolean
-    message: string
-    product?: {
-        id: string
-        name: string
-        description: string | null
-        price: number
-        categoryId: string | null
-        createdAt: Date
-        updatedAt: Date
-        category?: {
-            id: string
-            name: string
-        } | null
-    }
-}
-
 export const getProduct = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
@@ -61,9 +42,27 @@ export const getProduct = async (req: Request, res: Response): Promise<void> => 
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to retrieve product" 
+            message: "Failed to retrieve product"
         })
+    }
+}
+
+interface GetProductResponse {
+    success: boolean
+    message: string
+    product?: {
+        id: string
+        name: string
+        description: string | null
+        price: number
+        categoryId: string | null
+        createdAt: Date
+        updatedAt: Date
+        category?: {
+            id: string
+            name: string
+        } | null
     }
 }

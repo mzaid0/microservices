@@ -1,46 +1,10 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
-
-interface CreateProductBody {
-    name: string
-    description?: string
-    price: number
-    categoryId?: string
-}
-
-interface CreateProductResponse {
-    success: boolean
-    message: string
-    product?: {
-        id: string
-        name: string
-        description: string | null
-        price: number
-        categoryId: string | null
-        createdAt: Date
-        updatedAt: Date
-    }
-}
+import { Validator } from "../../validator"
 
 export const createProduct = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name, description, price, categoryId } = req.body as CreateProductBody
-
-        if (!name || !price) {
-            res.status(400).json({
-                success: false,
-                message: "Name and price are required"
-            })
-            return
-        }
-
-        if (price <= 0) {
-            res.status(400).json({
-                success: false,
-                message: "Price must be greater than 0"
-            })
-            return
-        }
+        const { name, description, price, categoryId } = req.body as Validator["product"]
 
         if (categoryId) {
             const existingCategory = await productDb.category.findUnique({
@@ -79,5 +43,19 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
             success: false,
             message: "Failed to create product" 
         })
+    }
+}
+
+interface CreateProductResponse {
+    success: boolean
+    message: string
+    product?: {
+        id: string
+        name: string
+        description: string | null
+        price: number
+        categoryId: string | null
+        createdAt: Date
+        updatedAt: Date
     }
 }

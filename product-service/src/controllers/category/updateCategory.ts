@@ -1,38 +1,16 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
-
-interface UpdateCategoryBody {
-    name?: string
-}
-
-interface UpdateCategoryResponse {
-    success: boolean
-    message: string
-    category?: {
-        id: string
-        name: string
-        createdAt: Date
-        updatedAt: Date
-    }
-}
+import { Validator } from "../../validator"
 
 export const updateCategory = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
-        const { name } = req.body as UpdateCategoryBody
+        const { name } = req.body as Validator["category"]
 
         if (!id) {
             res.status(400).json({
                 success: false,
                 message: "Category ID is required"
-            })
-            return
-        }
-
-        if (!name || name.trim() === '') {
-            res.status(400).json({
-                success: false,
-                message: "Category name is required"
             })
             return
         }
@@ -84,9 +62,20 @@ export const updateCategory = async (req: Request, res: Response): Promise<void>
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to update category" 
+            message: "Failed to update category"
         })
+    }
+}
+
+interface UpdateCategoryResponse {
+    success: boolean
+    message: string
+    category?: {
+        id: string
+        name: string
+        createdAt: Date
+        updatedAt: Date
     }
 }

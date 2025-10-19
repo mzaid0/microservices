@@ -8,31 +8,6 @@ interface GetAllProductsQuery {
     search?: string
 }
 
-interface GetAllProductsResponse {
-    success: boolean
-    message: string
-    products: {
-        id: string
-        name: string
-        description: string | null
-        price: number
-        categoryId: string | null
-        createdAt: Date
-        updatedAt: Date
-        category?: {
-            id: string
-            name: string
-        } | null
-    }[]
-    pagination: {
-        currentPage: number
-        totalPages: number
-        totalProducts: number
-        hasNext: boolean
-        hasPrevious: boolean
-    }
-}
-
 interface WhereClause {
     categoryId?: string
     OR?: Array<{
@@ -106,5 +81,30 @@ export const getAllProducts = async (req: Request, res: Response): Promise<void>
             success: false,
             message: "Failed to retrieve products"
         })
+    }
+}
+
+interface GetAllProductsResponse {
+    success: boolean
+    message: string
+    products: {
+        id: string
+        name: string
+        description: string | null
+        price: number
+        categoryId: string | null
+        createdAt: Date
+        updatedAt: Date
+        category?: {
+            id: string
+            name: string
+        } | null
+    }[]
+    pagination: {
+        currentPage: number
+        totalPages: number
+        totalProducts: number
+        hasNext: boolean
+        hasPrevious: boolean
     }
 }

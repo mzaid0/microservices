@@ -1,32 +1,10 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
-
-interface CreateCategoryBody {
-    name: string
-}
-
-interface CreateCategoryResponse {
-    success: boolean
-    message: string
-    category?: {
-        id: string
-        name: string
-        createdAt: Date
-        updatedAt: Date
-    }
-}
+import { Validator } from "../../validator"
 
 export const createCategory = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name } = req.body as CreateCategoryBody
-
-        if (!name) {
-            res.status(400).json({
-                success: false,
-                message: "Category name is required"
-            })
-            return
-        }
+        const { name } = req.body as Validator["category"]
 
         const existingCategory = await productDb.category.findFirst({
             where: {
@@ -59,9 +37,20 @@ export const createCategory = async (req: Request, res: Response): Promise<void>
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to create category" 
+            message: "Failed to create category"
         })
+    }
+}
+
+interface CreateCategoryResponse {
+    success: boolean
+    message: string
+    category?: {
+        id: string
+        name: string
+        createdAt: Date
+        updatedAt: Date
     }
 }

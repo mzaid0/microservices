@@ -1,15 +1,6 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
 
-interface DeleteCategoryResponse {
-    success: boolean
-    message: string
-    deletedCategory?: {
-        id: string
-        name: string
-    }
-}
-
 export const deleteCategory = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
@@ -66,9 +57,18 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to delete category" 
+            message: "Failed to delete category"
         })
+    }
+}
+
+interface DeleteCategoryResponse {
+    success: boolean
+    message: string
+    deletedCategory?: {
+        id: string
+        name: string
     }
 }

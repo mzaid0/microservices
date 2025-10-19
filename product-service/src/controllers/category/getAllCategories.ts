@@ -1,20 +1,6 @@
 import { Request, Response } from "express"
 import { productDb } from "../../config/db"
 
-interface GetAllCategoriesResponse {
-    success: boolean
-    message: string
-    categories: {
-        id: string
-        name: string
-        createdAt: Date
-        updatedAt: Date
-        _count: {
-            products: number
-        }
-    }[]
-}
-
 export const getAllCategories = async (req: Request, res: Response): Promise<void> => {
     try {
         const categories = await productDb.category.findMany({
@@ -40,9 +26,23 @@ export const getAllCategories = async (req: Request, res: Response): Promise<voi
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            message: "Failed to retrieve categories" 
+            message: "Failed to retrieve categories"
         })
     }
+}
+
+interface GetAllCategoriesResponse {
+    success: boolean
+    message: string
+    categories: {
+        id: string
+        name: string
+        createdAt: Date
+        updatedAt: Date
+        _count: {
+            products: number
+        }
+    }[]
 }
