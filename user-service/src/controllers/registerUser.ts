@@ -1,24 +1,13 @@
 import bcrypt from "bcryptjs"
 import { Request, Response } from "express"
 import { userDb } from "../config/db"
-
-interface RegisterUserBody {
-    name: string
-    email: string
-    password: string
-}
-
-interface ResponseBody {
-    success: boolean
-    message: string
-    userId: string
-}
+import { Validator } from "../validator"
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
 
     try {
 
-        const { name, email, password } = req.body as RegisterUserBody
+        const { name, email, password } = req.body as Validator["RegisterUser"]
 
         const existingUser = await userDb.user.findUnique({
             where: { email }
@@ -55,4 +44,10 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
         res.status(500).json({ message: "Registration failed" })
     }
 
+}
+
+interface ResponseBody {
+    success: boolean
+    message: string
+    userId: string
 }

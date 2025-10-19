@@ -2,27 +2,13 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import { userDb } from "../config/db";
 import { generateToken, setTokensInCookies } from "../helpers/auth-helpers";
-
-interface LoginUserBody {
-    email: string
-    password: string
-}
-
-interface ResponseBody {
-    success: boolean
-    message: string
-    user: {
-        id: string
-        name: string | null
-        email: string
-    }
-}
+import { Validator } from "../validator";
 
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
     try {
 
-        const { email, password } = req.body as LoginUserBody
+        const { email, password } = req.body as Validator["LoginUser"]
 
         const user = await userDb.user.findUnique({
             where: { email }
@@ -65,4 +51,14 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json({ message: "Login failed" })
     }
 
+}
+
+interface ResponseBody {
+    success: boolean
+    message: string
+    user: {
+        id: string
+        name: string | null
+        email: string
+    }
 }
