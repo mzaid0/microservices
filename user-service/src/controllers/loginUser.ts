@@ -2,7 +2,8 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import { userDb } from "../config/db";
 import { generateToken, setTokensInCookies } from "../helpers/auth-helpers";
-import { Validator } from "../validator";
+import { type Validator } from "microservices-shared";
+import { ResponseBody } from "@microservices-shared/types/loginResBody";
 
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
@@ -51,14 +52,4 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json({ message: "Login failed" })
     }
 
-}
-
-interface ResponseBody {
-    success: boolean
-    message: string
-    user: {
-        id: string
-        name: string | null
-        email: string
-    }
 }

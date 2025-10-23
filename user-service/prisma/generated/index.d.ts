@@ -204,8 +204,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -218,6 +218,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -875,6 +876,7 @@ export namespace Prisma {
     email: string | null
     name: string | null
     password: string | null
+    refreshToken: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -884,6 +886,7 @@ export namespace Prisma {
     email: string | null
     name: string | null
     password: string | null
+    refreshToken: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -893,6 +896,7 @@ export namespace Prisma {
     email: number
     name: number
     password: number
+    refreshToken: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -904,6 +908,7 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    refreshToken?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -913,6 +918,7 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    refreshToken?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -922,6 +928,7 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    refreshToken?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1004,6 +1011,7 @@ export namespace Prisma {
     email: string
     name: string | null
     password: string
+    refreshToken: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1030,6 +1038,7 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    refreshToken?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1039,6 +1048,7 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    refreshToken?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1048,6 +1058,7 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    refreshToken?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1057,11 +1068,12 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    refreshToken?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "refreshToken" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1071,6 +1083,7 @@ export namespace Prisma {
       email: string
       name: string | null
       password: string
+      refreshToken: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1500,6 +1513,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly refreshToken: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -1887,6 +1901,7 @@ export namespace Prisma {
     email: 'email',
     name: 'name',
     password: 'password',
+    refreshToken: 'refreshToken',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -1976,6 +1991,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    refreshToken?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -1985,6 +2001,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrderInput | SortOrder
     password?: SortOrder
+    refreshToken?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -1997,6 +2014,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    refreshToken?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "email">
@@ -2006,6 +2024,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrderInput | SortOrder
     password?: SortOrder
+    refreshToken?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -2021,6 +2040,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringWithAggregatesFilter<"User"> | string
+    refreshToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -2030,6 +2050,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password: string
+    refreshToken?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2039,6 +2060,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password: string
+    refreshToken?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2048,6 +2070,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2057,6 +2080,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2066,6 +2090,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password: string
+    refreshToken?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2075,6 +2100,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2084,6 +2110,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2139,6 +2166,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    refreshToken?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2148,6 +2176,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    refreshToken?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2157,6 +2186,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    refreshToken?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

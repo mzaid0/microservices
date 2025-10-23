@@ -1,19 +1,21 @@
-
 {
   "compilerOptions": {
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "Node",
-    "ignoreDeprecations": "6.0",
     "esModuleInterop": true,
-    "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    
-    
+    "allowSyntheticDefaultImports": true,
+
+    "paths": {
+      "@microservices-shared/*": ["../shared/src/*"],
+      "microservices-shared": ["../shared/src/index.ts"]
+    },
+
     "typeRoots": ["./src/types"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "../shared/src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

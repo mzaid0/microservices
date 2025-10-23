@@ -1,7 +1,8 @@
+import { ResponseBody } from "@microservices-shared/types/registerResBody"
 import bcrypt from "bcryptjs"
 import { Request, Response } from "express"
+import { type Validator } from "microservices-shared"
 import { userDb } from "../config/db"
-import { Validator } from "../validator"
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
 
@@ -44,10 +45,4 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
         res.status(500).json({ message: "Registration failed" })
     }
 
-}
-
-interface ResponseBody {
-    success: boolean
-    message: string
-    userId: string
 }

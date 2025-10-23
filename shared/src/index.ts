@@ -1,4 +1,5 @@
-import { loginSchema, LoginUser, registerSchema, RegisterUser } from "./auth-validator"
+import { loginSchema, LoginUser, registerSchema, RegisterUser } from "./validators/auth-validator"
+
 
 export type Validator = {
     RegisterUser: RegisterUser
