@@ -26,4 +26,4 @@ app.use(cors({ origin: ' * ', credentials: true }));
 app.use("/api/auth", authRoutes)
 
 
-app.listen(port, () => console.log('👤 User Service is working on Port:' + port + ' in ' + envMode + ' Mode.'));
+app.listen(port, () => console.log('🤓 User Service is working on Port:' + port + ' in ' + envMode + ' Mode.'));

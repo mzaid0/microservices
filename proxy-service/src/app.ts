@@ -22,5 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: ' * ', credentials: true }));
 
+import userProxy from "./routes/user.route"
+app.use("/proxy", userProxy)
 
-app.listen(port, () => console.log('🖇️  Proxy Server is working on Port:' + port + ' in ' + envMode + ' Mode.'));
+
+app.listen(port, () => console.log('🤝 Proxy Server is working on Port:' + port + ' in ' + envMode + ' Mode.'));
