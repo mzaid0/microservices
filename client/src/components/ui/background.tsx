@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export function Background() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -102,12 +100,9 @@ export function Background() {
         }
       `}</style>
 
-      {/* Background */}
       <div className="fixed inset-0 bg-zinc-950 text-zinc-50 -z-10">
-        {/* Subtle vignette */}
         <div className="absolute inset-0 pointer-events-none [background:radial-gradient(80%_60%_at_50%_30%,rgba(255,255,255,0.06),transparent_60%)]" />
 
-        {/* Animated accent lines */}
         <div className="accent-lines">
           <div className="hline" />
           <div className="hline" />
@@ -117,25 +112,10 @@ export function Background() {
           <div className="vline" />
         </div>
 
-        {/* Particles */}
         <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full opacity-50 mix-blend-screen pointer-events-none"
         />
-
-        {/* Header */}
-        <header className="absolute left-0 right-0 top-0 flex items-center justify-between px-6 py-4 border-b border-zinc-800/80 z-10">
-          <span className="text-xs tracking-[0.14em] uppercase text-zinc-400">
-            NOVA
-          </span>
-          <Button
-            variant="outline"
-            className="h-9 rounded-lg border-zinc-800 bg-zinc-900 text-zinc-50 hover:bg-zinc-900/80"
-          >
-            <span className="mr-2">Contact</span>
-            <ArrowRight className="h-4 w-4" />
-          </Button>
-        </header>
       </div>
     </>
   );

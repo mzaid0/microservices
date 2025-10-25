@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Background } from "@/components/ui/background";
 import { Lock, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { validator, type Validator } from "microservices-shared";
 
 import Link from "next/link";
 
@@ -29,23 +29,20 @@ export default function LoginForm() {
   const onSubmit = async (data: Validator['LoginUser']) => {
     try {
       console.log("Login data:", data);
-      // Add your login logic here
     } catch (error) {
       console.error("Login error:", error);
     }
   };
 
   return (
-    <>
-      <Background />
-      <section className="min-h-screen flex items-center justify-center px-4 relative z-10">
-        <Card className="card-animate w-full max-w-sm border-zinc-800 bg-zinc-900/70 backdrop-blur supports-backdrop-filter:bg-zinc-900/60">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Welcome back</CardTitle>
-            <CardDescription className="text-zinc-400">
-              Sign in to your account
-            </CardDescription>
-          </CardHeader>
+    <section className="min-h-screen flex items-center justify-center px-4 relative z-10">
+      <Card className="card-animate w-full max-w-sm border-zinc-800 bg-zinc-900/70 backdrop-blur supports-backdrop-filter:bg-zinc-900/60">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl">Welcome back</CardTitle>
+          <CardDescription className="text-zinc-400">
+            Sign in to your account
+          </CardDescription>
+        </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
@@ -87,8 +84,8 @@ export default function LoginForm() {
                 )}
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full h-10 rounded-lg bg-zinc-50 text-zinc-900 hover:bg-zinc-200 disabled:opacity-50"
               >
@@ -105,6 +102,5 @@ export default function LoginForm() {
           </CardContent>
         </Card>
       </section>
-    </>
-  );
+    );
 }
