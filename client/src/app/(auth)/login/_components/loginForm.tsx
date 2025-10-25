@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Lock, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { validator, type Validator } from "microservices-shared";
+import { validator, type Validator } from "../../../../../../shared/src/index";
 
 import Link from "next/link";
 
