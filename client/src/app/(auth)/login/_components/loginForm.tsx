@@ -38,7 +38,7 @@ export default function LoginForm() {
     <section className="min-h-screen flex items-center justify-center px-4 relative z-10">
       <Card className="card-animate w-full max-w-sm border-zinc-800 bg-zinc-900/70 backdrop-blur supports-backdrop-filter:bg-zinc-900/60">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Welcome back</CardTitle>
+          <CardTitle className="text-2xl text-zinc-300">Welcome back</CardTitle>
           <CardDescription className="text-zinc-400">
             Sign in to your account
           </CardDescription>
